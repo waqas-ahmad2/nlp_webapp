@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>WELCOME | WEBAPP</title>
+    <link rel="stylesheet" href={{url_for("static",filename="main.css")}}>
+
+
+</head>
+<body>
+
+    <nav>
+        <ul>
+            <li><a class="active" href="/">Home</a></li>
+            <li><a href="/login">Login</a></li>
+            <li><a href="/register">Register</a></li>
+        </ul>
+    </nav>
+
+
+    <h1 id="myText" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);color: green; "></h1>
+
+
+
+
+    <script>
+      const textEl = document.getElementById("myText");
+      const messages = ["Welcome to this NLP WEB APP, Designed for Text Analysis!", "This website is built by Waqas Ahmad as a project for NLP analysis, you can find more in the <a href='/', target=blank>About me</a> section", "We are using Komprehend's API, for further information about the use and documentations you can go to their  <a href='https://komprehend.io/docs', target=blank>website</a>"];
+      let currentMessage = 0;
+      let fadeIn = false;
+
+      function animateText() {
+        if (fadeIn) {
+          textEl.style.opacity = 1;
+          setTimeout(() => {
+            fadeIn = false;
+            animateText();
+          }, 3000); // fade in for 2 second
+        } else {
+          textEl.style.opacity = 0;
+          setTimeout(() => {
+            fadeIn = true;
+            currentMessage = (currentMessage + 1) % messages.length;
+            textEl.innerHTML = messages[currentMessage];
+            animateText();
+          },1000); // fade out for 1 second
+        }
+      }
+
+      animateText(); // start the animation loop
+    </script>
+
+
+</body>
+</html>

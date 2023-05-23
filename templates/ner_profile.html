@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NER PROFILE | WEBAPP</title>
+    <link rel="image" href="flask_project/static/favicon.ico" type="image/png type">
+
+    <link rel="stylesheet" href={{url_for("static",filename="main.css")}}>
+    <style>
+        /* Style the form */
+        form {
+            width: 50%;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    </style>
+
+</head>
+<body>
+    <nav>
+        <ul>
+            <li style = "float: right"><a href="/">Logout</a></li>
+            <li style = "float: right"><a class="active" href="/profile">Profile</a></li>
+
+
+        </ul>
+    </nav>
+
+    <br>
+    <br>
+    <h1>Select Type Of Analysis You Would Like To Perform</h1>
+    <br>
+    <h3>Please select one of the below options</h3>
+
+
+
+    <div style="margin:10px 10px; padding-bottom:10px;">
+
+         <form  class="profile">
+            <button class='active2' formaction="/ner_profile">Name Entity Recognition</button>
+            <button formaction="/sentiments_profile">Sentiments Analysis</button>
+            <button formaction="/emotions_profile">Emotions Analysis</button>
+        </form>
+
+
+    </div>
+
+    <h3>Name Entity Recognition</h3>
+    <h5>Please type the text below to perform NER analysis</h5>
+
+    <form action="/perform_ner" , method="post">
+        <textarea style="width: 100%; font-size:16px; background-color: #fff8dc; height:200px; overflow:scroll; resize:None" , name="txtbox" required>In a statement issued with France and UN chief António Guterres on Saturday, China committed to “update” its climate target “in a manner representing a progression beyond the current one”.  It also vowed to publish a long term decarbonisation strategy by next year.</textarea>
+        <br>
+        <button>Analyze</button>
+        <br>
+        {%if msg%}
+            <p class="ner_display" style="font-weight:bold">Named Entity Analysis Results:</p>
+            {%for i in msg["entities"]:%}
+                <p class="ner_display" > {{i['category'] + " : "}} <span class="highlighted" style="align:right">{{i['name']}}</span></p>
+<!--                <p class="ner_display" > Category : <span class="highlighted" style="align:right"></span></p>-->
+            {%endfor%}
+        {%endif%}
+    </form>
+
+
+
+</body>
+</html>

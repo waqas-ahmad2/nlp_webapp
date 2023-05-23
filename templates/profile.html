@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PROFILE | WEBAPP</title>
+
+    <link rel="stylesheet" href={{url_for("static",filename="main.css")}}>
+
+
+</head>
+<body>
+    <nav>
+        <ul>
+            <li style = "float: right"><a href="/perform_logout">Logout</a></li>
+            <li style = "float: right"><a class="active" href="/profile">Profile</a></li>
+
+
+        </ul>
+    </nav>
+    <br>
+    <br>
+    <h1>TEXT ANALYSIS APP</h1>
+    <hr>
+    {%if session%}
+    <h2>Welcome to your Profile {{session['user']}}</h2>
+    {%endif%}
+
+    <h3>Please select one of the below options</h3>
+
+    <div >
+
+         <form  class="profile">
+            <button formaction="/ner_profile">Name Entity Recognition</button>
+            <button formaction="/sentiments_profile">Sentiments Analysis</button>
+            <button formaction="/emotions_profile">Emotions Analysis</button>
+        </form>
+
+
+    </div>
+</body>
+</html>

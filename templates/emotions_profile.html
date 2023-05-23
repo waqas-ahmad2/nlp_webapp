@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NER PROFILE | WEBAPP</title>
+    <link rel="image" href="flask_project/static/favicon.ico" type="image/png type">
+
+    <link rel="stylesheet" href={{url_for("static",filename="main.css")}}>
+    <style>
+        /* Style the form */
+        form {
+            width: 50%;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    </style>
+
+</head>
+<body>
+    <nav>
+        <ul>
+            <li style = "float: right"><a href="/">Logout</a></li>
+            <li style = "float: right"><a class="active" href="/profile">Profile</a></li>
+
+
+        </ul>
+    </nav>
+
+    <br>
+    <br>
+    <h1>Select Type Of Analysis You Would Like To Perform</h1>
+    <br>
+    <h3>Please select one of the below options</h3>
+
+    <div style="margin:10px 10px; padding-bottom:10px;">
+
+         <form  class="profile">
+            <button formaction="/ner_profile">Name Entity Recognition</button>
+            <button formaction="/sentiments_profile">Sentiments Analysis</button>
+            <button class='active2' formaction="/emotions_profile">Emotions Analysis</button>
+         </form>
+
+    </div>
+
+    <h3>Emotions Analysis</h3>
+    <h5>Please type the text below to perform Emotions analysis</h5>
+
+
+
+    <form action="/perform_emotions" , method="post">
+        <textarea  style="width: 100%; font-size:16px; background-color: #fff8dc; height:200px; overflow:scroll; resize:None" , name="txtbox" required>In a statement issued with France and UN chief António Guterres on Saturday, China committed to “update” its climate target “in a manner representing a progression beyond the current one”.  It also vowed to publish a long term decarbonisation strategy by next year.</textarea>
+        <br>
+        <button >Analyze</button>
+        {%if msg%}
+            <p class="ner_display" style="font-weight:bold">Emotion Analysis Results:</p>
+<!--            <p class="ner_display" > Angry : <span class="highlighted"> {{msg['emotion']['Angry']|round(2)|string}} </span> </p>-->
+<!--            <p class="ner_display" > Sad : <span class="highlighted"> {{msg['emotion']['Sad']|round(2)|string}} </span> </p>-->
+<!--            <p class="ner_display" > Excited : <span class="highlighted"> {{msg['emotion']['Excited']|round(2)|string}} </span> </p>-->
+<!--            <p class="ner_display" > Bored : <span class="highlighted"> {{msg['emotion']['Bored']|round(2)|string}} </span> </p>-->
+<!--            <p class="ner_display" > Happy : <span class="highlighted"> {{msg['emotion']['Happy']|round(2)|string}} </span> </p>-->
+<!--            <p class="ner_display" > Fear :  <span class="highlighted"> {{msg['emotion']['Fear']|round(2)|string}} </span> </p>-->
+            <div class="grid-container">
+                <div class="grid-item">
+                    <img src="https://em-content.zobj.net/source/animated-noto-color-emoji/356/grinning-face_1f600.gif" alt="Negative" width="70" height="70">
+                    <p>Happy</p>
+                    <p class="highlighted"> {{msg['emotion']['Happy']|round(2)|string }}</p>
+                </div>
+
+                <div class="grid-item">
+                    <img src="https://em-content.zobj.net/source/animated-noto-color-emoji/356/pouting-face_1f621.gif" alt="Neutral" width="70" height="70">
+                    <p>Angry</p>
+                    <p class="highlighted"> {{msg['emotion']['Angry']|round(2)|string }}</p>
+                </div>
+
+                <div class="grid-item">
+                    <img src="https://em-content.zobj.net/source/animated-noto-color-emoji/356/star-struck_1f929.gif" alt="Positive"	width="70" height="70">
+                    <p>Excited</p>
+                    <p class="highlighted"> {{msg['emotion']['Excited']|round(2)|string}}</p>
+                </div>
+
+                <div class="grid-item">
+                    <img src="https://em-content.zobj.net/source/animated-noto-color-emoji/356/disappointed-face_1f61e.gif" alt="Negative" width="70" height="70">
+                    <p>Sad</p>
+                    <p class="highlighted"> {{msg['emotion']['Sad']|round(2)|string }}</p>
+                </div>
+
+                <div class="grid-item">
+                    <img src="https://em-content.zobj.net/source/animated-noto-color-emoji/356/yawning-face_1f971.gif" alt="Neutral" width="70" height="70">
+                    <p>Bored</p>
+                    <p class="highlighted"> {{msg['emotion']['Bored']|round(2)|string }}</p>
+                </div>
+
+                <div class="grid-item">
+                    <img src="https://em-content.zobj.net/source/animated-noto-color-emoji/356/face-screaming-in-fear_1f631.gif" alt="Positive"	width="70" height="70">
+                    <p>Fear</p>
+                    <p class="highlighted"> {{msg['emotion']['Fear']|round(2)|string }}</p>
+                </div>
+
+
+
+            </div>
+
+
+
+
+
+
+
+
+
+        {%endif%}
+    </form>
+
+
+
+</body>
+</html>

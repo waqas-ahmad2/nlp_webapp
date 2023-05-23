@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LOGIN | WEBAPP</title>
+
+    <link rel="stylesheet" href={{url_for("static",filename="main.css")}}>
+
+
+</head>
+    <body>
+
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a class="active" href="/login">Login</a></li>
+                <li><a href="/register">Register</a></li>
+            </ul>
+        </nav>
+        <h1>NLP WEB APP</h1>
+        <br>
+        <h3>Login</h3>
+        {% if msg %}
+            <p class="success">{{msg}}</p>
+        {%endif%}
+        {% if txt %}
+            <p class="error">{{txt}}</p>
+        {%endif%}
+        <br>
+        <form action="/perform_login" , method="post">
+            <label>Email</label><br>
+            <input type="email" , name="user_email">
+            <br>
+            <br>
+            <label>Password</label><br>
+            <input type="password" , name="user_password">
+            <br>
+            <br>
+            <button>Login</button>
+            <br>
+            <br>
+            <p>Not a Member? <a href="/register"> Register Here</a></p>
+
+        </form>
+
+
+    </body>
+</html>
